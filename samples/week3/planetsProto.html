@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Planets</title>
+	<meta charset="utf-8">
+	
+	<style>
+		.planet {
+			border-radius:100px;
+			width:100px;
+			height:100px;
+			color:white;
+			
+		}
+		.planet.gasPlanet {
+			color:black;
+			opacity:0.5;
+		}
+		
+		.planet h1 {
+			font-size:12px;
+			text-align:center;
+		}
+	</style>
+	
+<script>
+window.onload = init;
+
+function Planet(name, type, colour) {
+	this.planetName = name;
+	this.type = type;
+	this.colour = colour;
+}
+
+Planet.prototype.displayName = function(){
+	return this.planetName;
+}
+
+Planet.prototype.isAGasPlanet = function(){
+	return this.type === 'gas';
+}
+
+function init() {
+	var mars = new Planet('Mars', 'solid', '#ff0000');
+	var earth = new Planet('Earth', 'solid', '#0000ff');
+	var jupiter = new Planet('Jupiter', 'gas', '#ffff00');
+	
+	addPlanetData('planet1', mars);
+	addPlanetData('planet2', earth);
+	addPlanetData('planet3', jupiter);
+}
+
+function addPlanetData(elementId, planet) {
+	var element = document.getElementById(elementId);
+	var header = document.createElement('h1');
+	if (planet.isAGasPlanet()) {
+		element.className += ' gasPlanet';
+	}
+	element.style.backgroundColor = planet.colour;
+	header.innerHTML = planet.displayName();
+	element.appendChild(header);
+}
+
+</script>
+</head>
+<body>
+	<div id="planet1" class="planet"></div>
+	<div id="planet2" class="planet"></div>
+	<div id="planet3" class="planet"></div>
+</body>
+</html>
+

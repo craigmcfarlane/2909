@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Dog</title>
+	<meta charset="utf-8">
+	
+<script>
+//this is an object
+// see fidoProto for the object constructor
+var fido = {
+	name: 'Fido',
+	weight: 40,
+	breed: 'Mixed',
+	loves: ['walks', 'fetching balls'],
+	bark: function() {
+		console.log('Woof woof!');
+	}	
+};
+
+var lassie = {};
+
+
+window.onload = init;
+
+function init() {
+	var bark;
+	if (fido.weight > 25) {
+		console.log("Woof")
+	} else {
+		console.log("YIP");
+	}
+	var breed = fido['breed'];
+	if (breed == 'Mixed') {
+		console.log('Best in show');
+	}
+	var prop;
+	for (prop in fido) {
+		console.log('Fido has a ' + prop + ' property ');
+	}
+	
+	fido.age = 5;
+	
+	console.log('Fido is '+fido.age+' years old');
+	
+	delete fido.age;
+	
+	console.log('Fidos age is now '+fido.age+' years old');
+	
+	console.log('Fido goes '+fido.bark());
+}
+</script>
+</head>
+<body>
+</body>
+</html>
+
