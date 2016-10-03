@@ -52,12 +52,17 @@ function init() {
 
 function addPlanetData(elementId, planet) {
 	var element = document.getElementById(elementId);
+	// created element not on page yet
 	var header = document.createElement('h1');
 	if (planet.isAGasPlanet()) {
 		element.className += ' gasPlanet';
 	}
+
+	// by doing this all before adding the element the browser has to do less work,
+	// if added first then the browser has to reload with each attribute changed uses up cpu and mem
 	element.style.backgroundColor = planet.colour;
 	header.innerHTML = planet.displayName();
+//	header.style.fontSize = '30px';
 	element.appendChild(header);
 }
 
