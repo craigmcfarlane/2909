@@ -1,0 +1,23 @@
+/* 
+    Document   : E04_Q1
+    Created on : 3-Oct-2013, 9:25:35 AM
+    Author     : Christopher
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#centre { 
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+h3 {
+    margin-bottom: 5px;
+    font-family: sans-serif;
+}
+
+#inside {
+    margin-left: 25px;
+    font-family: sans-serif;
+}

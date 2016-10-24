@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Q2</title>
+
+    <script>
+        window.onload = function()
+        {
+            for (var i=0; i<500; i++) {
+                var oneBox = document.createElement("div");
+                oneBox.style.height = "30px";
+                oneBox.style.width = "30px";
+                oneBox.style.position = "absolute";
+                oneBox.style.backgroundColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+//                oneBox.style.backgroundColor = "#34F612";
+                oneBox.style.top = Math.round(Math.random()*window.innerHeight) + "px";
+                oneBox.style.left = Math.round(Math.random()*window.innerHeight) + "px";
+                var box = document.getElementsByTagName("body");
+                box[0].appendChild(oneBox);
+            }
+        }
+//
+//        var n = 500;
+//        var width = 50;
+//        var height = 50;
+//
+//        window.onload = function() {
+//            for (var i=0; i<n; i++) {
+//                var div = document.createElement("div");
+//                div.style.position = "absolute";
+//                div.style.width = width + "px";
+//                div.style.height = height + "px";
+//                div.style.top = Math.round(Math.random()*window.innerHeight) + "px";
+//                div.style.left = Math.round(Math.random()*window.innerWidth) + "px";
+//                var R = Math.round(Math.random() * 255);
+//                var G = Math.round(Math.random() * 255);
+//                var B = Math.round(Math.random() * 255);
+//                div.style.backgroundColor = "rgb(" + R + "," + G + "," + B + ")";
+//
+//                var body = document.getElementsByTagName("body");
+//                body[0].appendChild(div);
+//            }
+//        }
+//
+//
+
+    </script>
+</head>
+<body>
+</body>
+</html>

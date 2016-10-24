@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Q3</title>
+    <script>
+//        mouseMove()
+//        clientX
+//        clientY
+/*
+every time the mouse moves call the funciton that reports back the x and y posn
+ */
+//        window.onload = xy;
+
+        document.onmousemove = xy;
+
+        function xy() {
+            var evt = window.event;
+            var xpos = evt.clientX;
+            var ypos = evt.clientY;
+            var liX = document.getElementById("xcoord");
+            var liY = document.getElementById("ycoord");
+            liX.innerHTML = "X coordinate is " + xpos;
+            liY.innerHTML = "Y coordinate is " + ypos;
+        }
+
+    </script>
+</head>
+<body>
+<h1>
+    <em>Mouse Position</em>
+</h1>
+<li id = "xcoord"></li>
+<li id = "ycoord"></li>
+</body>
+</html>

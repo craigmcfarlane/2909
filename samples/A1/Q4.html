@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Q2</title>
+
+    <script>
+        var diffX = null;
+        var diffY = null;
+
+        window.onload = function()
+        {
+            for (var i=0; i<500; i++) {
+                var oneBox = document.createElement("div");
+                oneBox.style.height = "30px";
+                oneBox.style.width = "30px";
+                oneBox.style.position = "absolute";
+                oneBox.style.backgroundColor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+//                oneBox.style.backgroundColor = "#34F612";
+                oneBox.style.top = Math.round(Math.random()*window.innerHeight) + "px";
+                oneBox.style.left = Math.round(Math.random()*window.innerHeight) + "px";
+
+                addEvent(oneBox, "mousedown", mouseGrab, false);
+
+                var box = document.getElementsByTagName("body");
+                box[0].appendChild(oneBox);
+            }
+        }
+
+
+
+        function mouseGrab(e) {
+            var evt = e || window.event;
+            mousePiece = evt.target || evt.srcElement;
+
+            var mouseX = evt.clientX; // x-coordinate of pointer
+            var mouseY = evt.clientY; // y-coordinate of pointer
+
+            /* Calculate the distance from the pointer to the piece */
+            diffX = parseInt(mousePiece.style.left) - mouseX;
+            diffY = parseInt(mousePiece.style.top) - mouseY;
+
+            /* Add event handlers for mousemove and mouseup events */
+            addEvent(document, "mousemove", mouseMove, false);
+            addEvent(document, "mouseup", mouseDrop, false);
+        }
+
+        function mouseMove(e) {
+            var evt = e || window.event;
+            var mouseX = evt.clientX;
+            var mouseY = evt.clientY;
+
+            mousePiece.style.left = mouseX + diffX + "px";
+            mousePiece.style.top = mouseY + diffY + "px";
+        }
+
+        function mouseDrop(e) {
+
+                removeEvent(document, "mousemove", mouseMove, false);
+                removeEvent(document, "mouseup", mouseDrop, false);
+
+        }
+
+        function addEvent(object, evName, fnName, cap) {
+            object.addEventListener(evName, fnName, cap);
+        }
+
+        function removeEvent(object, evName, fnName, cap) {
+            object.removeEventListener(evName, fnName, cap);
+        }
+
+        /*
+        listen for event
+        click and hold
+        drag box to new place
+        update coords
+         */
+
+    </script>
+</head>
+<body>
+</body>
+</html>

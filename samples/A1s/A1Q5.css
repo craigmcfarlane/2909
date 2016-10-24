@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 6-Oct-2014, 10:42:24 PM
+    Author     : Hfamily
+*/
+
+#outside {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 400px;
+    height: 400px;
+    background-color: blue;
+}
+
+#inside {
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    width: 75px;
+    height: 75px;
+    background-color: black;
+}

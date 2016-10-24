@@ -1,0 +1,87 @@
+<html>
+<head>
+
+<style>
+	#data {
+		width:500px;
+	}
+	.box {
+		width:75px;
+		height:75px;
+		float: left;
+		border:1px solid black;
+		margin:10px;
+		padding:5px;
+		text-align:center;
+	}
+	.yellow {
+		background-color:yellow;	
+	}
+	.green {
+		background-color: green;
+	}
+	.blue {
+		background-color:blue;
+	}
+	.red {
+		background-color: red;
+	}
+	.magenta{
+		background-color: magenta;
+	}
+</style>
+<script>
+
+	var classes = ["red","green", "blue","yellow","magenta"];
+
+	window.onload = init;
+
+	function init() {
+		var buttons, data, i, x;
+		data = document.querySelector('#data');
+		for (i = 0; i < 100; i++) {
+			data.appendChild(createChild(i));
+		}
+		
+		buttons = document.querySelectorAll('.howManyButton');
+		for (x = 0; x < buttons.length; x++) {
+			buttons[x].addEventListener('click', handleButtonClick);
+		}
+	}
+	
+	function handleButtonClick(evt) {
+		var type = evt.currentTarget.getAttribute('data-type');
+		setResults("There are "+document.querySelectorAll('#data .'+type).length+" "+type+" boxes");
+	}
+	
+	function createChild(counter) {
+		var element = document.createElement('div');
+		element.classList.add('box');
+		element.classList.add(getClass());
+		element.innerHTML = "Box "+counter;
+		return element
+	}
+	
+	function getClass() {
+		return classes[Math.floor((Math.random()*5))];
+	}
+	
+	function setResults(results) {
+		document.querySelector("#results").innerHTML = results;
+	}
+	
+</script>
+</head>
+<body>
+<div>
+	<!--data- is standard for temp data-->
+	<button class="howManyButton" data-type="red">Red #</button>
+	<button class="howManyButton" data-type="green">Green #</button>
+	<button class="howManyButton" data-type="blue">Blue #</button>
+	<button class="howManyButton" data-type="yellow">Yellow #</button>
+	<button class="howManyButton" data-type="magenta">Magenta #</button>
+</div>
+<p id="results"><p>
+<div id="data"></div>
+</body>
+</html>

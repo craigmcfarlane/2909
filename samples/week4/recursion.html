@@ -1,0 +1,71 @@
+<html>
+<head>
+<style>
+
+.box {
+	border:1px solid #eee;
+	border-radius:5px;
+	margin: 5px;
+	padding:10px;
+}
+
+.hidden {
+	display:none;
+}
+</style>
+<script>
+window.onload = init;
+
+// instead of true this function adds to the counter
+// when recursively called: it basically keeps going while it is finding elements and and calls itself again until it finds a text element then it splits it and looks for the string
+function talksAbout(counter, node, string) {
+	if (node.nodeType == document.ELEMENT_NODE) { 
+		for (var i = 0; i < node.childNodes.length; i++) {
+			counter = talksAbout(counter, node.childNodes[i], string);
+		}
+	} else if (node.nodeType == document.TEXT_NODE) {
+		counter += node.nodeValue.split(string).length -1;
+		return counter;
+	}
+	return counter;
+}
+
+function init() {
+	var buttonElement = document.getElementById('findButton');
+
+	buttonElement.addEventListener('click', handleButtonClick );
+}
+
+function handleButtonClick() {
+	var resultsElement = document.getElementById('results');
+	var findElement = document.getElementById('findText');
+	var talksInstances = talksAbout(0, document.body, findElement.value);
+	resultsElement.innerHTML = 'There were '+talksInstances+' instances of '+findElement.value;
+	resultsElement.classList.remove('hidden');
+}
+
+</script>
+</head>
+<body>
+
+<div>
+	<h1>activities we like</h1>
+	<div>
+		<ul>
+			<li>reading books</li>
+			<li>writing books</li>
+			<li>baking cakes</li>
+			<li>buying books</li>
+			<li>playing cards</li>
+			<li>balancing my checkbook</li>
+		</ul>
+	</div>
+</div>
+
+<input type="text" id="findText"/>
+<button id="findButton">Find the word</button>
+
+<p class="box hidden" id="results">
+</p>
+</body>
+</html>
