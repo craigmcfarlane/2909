@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <script>
+            window.onload = function() {
+              var myObject = {
+                  myInt: 4,
+                  myFloat: 4.1,
+                  myStr: "I love the # 4",
+                  myArray: [4, 4, 4, 4]
+              };  
+              
+              var jsonStr = JSON.stringify(myObject);
+			  document.getElementById('jsonContent').innerHTML = jsonStr;
+              var objContainer = document.getElementById('jsonObject');
+              var objCopy = JSON.parse(jsonStr);
+              
+              var prop;
+              for (prop in objCopy) {
+                  objContainer.appendChild(newLI("The new object has a " + prop + " property with value " + objCopy[prop]));
+              }
+              
+            };
+			
+			function newLI(text) {
+				var li = document.createElement('li');
+				li.innerHTML = text;
+				return li;
+			}
+        </script>
+    </head>
+    <body>
+        <div id="jsonContent"></div>
+		<ul id="jsonObject"></ul>
+ </body>
+</html>
