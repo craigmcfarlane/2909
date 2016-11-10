@@ -21,7 +21,7 @@ should be dragged separately. When you release the mouse button, the circle shou
 
  need to determine whether it is at the edge of the canvas - can the canvas be set to the size of the dom?
 */
-var diff1x, diff1y, diff2x, diff2y, circle1X = 300, circle1Y = 300, circle2X = 600, circle2Y = 300, radians, canvas, movable, x, y;
+var diff1x, diff1y, diff2x, diff2y, circle1X = 300, circle1Y = 300, circle2X = 600, circle2Y = 300, radians, canvas, movable, c1, c2, atTop, atSide;
 
 window.onload = init;
 
@@ -91,18 +91,33 @@ function mouseGrab(e) {
         diff1x = circle1X - mouseX;
         diff1y = circle1Y - mouseY;
         movable = true;
-        x = true;
+        c1 = true;
     }
     else if (inCircle2) {
         diff2x = circle2X - mouseX;
         diff2y = circle2Y - mouseY;
         movable = true;
-        y= true;
+        c2 = true;
     }
     //Listen for mousemove and mouse up events
     addEvent(canvas, "mousemove", mouseMove, false);
     addEvent(canvas, "mouseup", mouseDrop, false);
 }
+/*
+if circle at top edge (e.g. y) keep y the same until it is not at edge but let x change
+ if at side edge e.g. x, keep x the same but let y change
+ */
+function atTop( cirY) {
+    if (0 == cirY + 100 || cirY + 100 == canvas.height) {
+        return atTop = true;
+    }
+}
+function atSide(cirX) {
+    if (0 == cirX + 100 || cirX +100 == canvas.width){
+        return atSide = true;
+    }
+}
+
 
 //mousemove event handler for moving element
 function mouseMove(e) {
@@ -114,8 +129,17 @@ function mouseMove(e) {
     // canvas.clear();
     //Update the position of the grabbed circle
     if (movable){
-        if (x) drawCircles(mouseX + diff1x, mouseY + diff1y, circle2X, circle2Y);
-        if (y) drawCircles(circle1X, circle1Y, mouseX + diff2x, mouseY + diff2y);
+        if (c1) {
+            drawCircles(mouseX + diff1x, mouseY + diff1y, circle2X, circle2Y);
+            circle1X = mouseX + diff1x;
+            circle1Y = mouseY + diff1y;
+        }
+
+        if (c2) {
+            drawCircles(circle1X, circle1Y, mouseX + diff2x, mouseY + diff2y);
+            circle2X = mouseX + diff2x;
+            circle2Y = mouseY + diff2y;
+        }
     }
 
 
@@ -125,9 +149,12 @@ function mouseMove(e) {
 function mouseDrop(e) {
     // circle1.style.cursor = "pointer";
     movable = false;
+    c1 = false;
+    c2 = false;
     removeEvent(document, "mousemove", mouseMove, false);
     removeEvent(document, "mouseup", mouseDrop, false);
 }
+
 
 
 function addEvent(object, evName, fnName, cap) {
