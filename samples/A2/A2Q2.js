@@ -21,6 +21,7 @@ window.onload = function() {
 function getXml() {
     xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://courses.acs.uwinnipeg.ca/2909-001/assignments/A2Q2.php');
+    xhr.send();
     console.log(xhr.status);
     if (xhr.status == 500)
     {
