@@ -1,17 +1,6 @@
 /**
  * Created by craig on 17/11/16.
  */
-/*
-create shopping list
-
-use form inputs
-each has
-    label and cost
-display in a list with expected cost
-total at bottom
-add, remove, close and open without losing
-cost and list automatically update
- */
 
 window.onload = init;
 
@@ -21,6 +10,7 @@ function init() {
     var remButton = document.getElementsByClassName("remove");
     console.log(remButton);
     var listArray = getListArray();
+    document.getElementById("list").innerHTML = "";
 
     for (var i = 0; i < listArray.length; i++) {
         var key = listArray[i];
@@ -30,11 +20,11 @@ function init() {
     updateTotal();
 }
 
-
 function addItemToDOM(key, value) {
     var items = document.getElementById("list");
     var item = document.createElement("li");
     var span = document.createElement("span");
+    item.value = key;
     span.classList.add("list");
     span.innerHTML = key.substr(0, key.indexOf("_"))  + ", $" + value;
 
@@ -48,6 +38,7 @@ function addItemToDOM(key, value) {
     span.appendChild(remove);
     item.appendChild(span);
     items.appendChild(item);
+    updateTotal();
 
 }
 
@@ -83,9 +74,7 @@ function updateTotal()
 
 function createItem() {
     var listArray = getListArray();
-    var date = new Date();
-    var currentDate = Date.UTC(date);
-    var key = document.getElementById("item").value + "_" + currentDate;
+    var key = document.getElementById("item").value + "_" + Math.floor((Math.random() * 10000) + 1);
     var value = document.getElementById("cost").value;
 
     localStorage.setItem(key, value);

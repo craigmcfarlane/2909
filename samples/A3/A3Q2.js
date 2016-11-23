@@ -6,13 +6,13 @@ window.onload = function() {
         console.log("calling worker");
         worker.postMessage("start");
         worker.onmessage = function (event) {
-            console.log("Mesasge received");
+            console.log("Message received");
             var message = event.data;
-
+            console.log(message);
             var objCopy = JSON.parse(message);
             var div = document.getElementById("response");
             var li = document.createElement("li");
-            li.style.color = objCopy.colour;
+            li.style.backgroundColor = objCopy.colour;
             div.appendChild(li).innerHTML = objCopy.message;
 
         }
